@@ -29,7 +29,12 @@ const run = async () => {
     name: process.env.MONGO_DATABASE_NAME
   });
 
-  await mongo.connection;
+  try {
+    await mongo.connection;
+  }
+  catch (error) {
+    console.log('Mongo', error);
+  }
 
   // Todos
   class Todos extends BaseCollection {
