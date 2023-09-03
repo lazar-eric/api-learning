@@ -16,7 +16,7 @@ const run = async () => {
   app.use(express.json());
 
   // http://localhost:4000
-  const port = 4000;
+  const port = process.env.PORT || 4000;
 
   // Da uveze iz .env fajla skrivene varijable
   // i ubaci ih u process.env.
