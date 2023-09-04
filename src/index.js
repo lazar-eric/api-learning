@@ -99,7 +99,7 @@ const run = async () => {
   );
 
   // USER rute
-  // 1) /users POST - Registracija korisnika
+  // /users POST - Registracija korisnika
   app.post(
     '/users',
     async (req, res, next) => {
@@ -136,7 +136,7 @@ const run = async () => {
     }
   );
 
-  // 2) /users/login POST - Login korisnika
+  // /users/login POST - Login korisnika
   app.post(
     '/users/login',
     async (req, res, next) => {
@@ -176,9 +176,8 @@ const run = async () => {
     }
   );
 
-  // TODO rute
-  // Dodavanje novog todo-a u bazu
-  // /todos POST - Kreiranje todo-ova
+  // TODO rute 
+  // /todos POST - Kreiranje todo-a
   app.post(
     '/todos',
     authMiddleware,
@@ -198,8 +197,7 @@ const run = async () => {
       return res.status(200).json(created);
     }
   );
-
-  // Citanje todova iz baze
+ 
   // /todos GET - Citanje todo-ova
   app.get(
     '/todos',
@@ -216,9 +214,8 @@ const run = async () => {
       return res.status(200).json(todovi);
     }
   );
-
-  // Citanje jednog todoa
-  // /todos/:id GET - Kreiranje jednog todo-a
+ 
+  // /todos/:id GET - Citanje jednog todo-a
   app.get(
     '/todos/:id',
     authMiddleware,
@@ -243,8 +240,7 @@ const run = async () => {
       }
     }
   );
-
-  // Update jednog todoa
+ 
   // /todos/:id PUT - Update jednog todo-a
   app.put(
     '/todos/:id',
@@ -283,8 +279,7 @@ const run = async () => {
       }
     }
   );
-
-  // Brisanje jednog todoa
+ 
   // /todos/:id DELETE - Brisanje jednog todo-a
   app.delete(
     '/todos/:id',
@@ -316,10 +311,10 @@ const run = async () => {
   );
 
   // error middleware
-  app.use((err, req, res, next) => {
-    console.error(err.stack);
+  app.use((error, req, res, next) => {
+    console.error(error.stack);
 
-    return res.status(500).json({ response: err.message || 'Neka greska se desila' });
+    return res.status(500).json({ response: error.message || 'Neka greska se desila' });
   });
 
   // POKRETANJE API-a
